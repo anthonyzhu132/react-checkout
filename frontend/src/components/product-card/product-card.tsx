@@ -49,6 +49,11 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
     toast('Item Added To Cart ✅');
   };
 
+  const convertToDollars = (cents:number) => {
+    let total = cents /= 100;
+    return total.toLocaleString("en-US", {style:"currency", currency:"CAD"});
+  }
+
   return (
     <div className="product-card-container">
       <Chip className={`${!isValid() ? 'hidden' : ""}`} color="error" label="Out Of Stock"/>
@@ -74,7 +79,7 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
                     <div key={variant.id} className="selection-container">
                       <img src={variant.image} alt="Product"/>
                       <div className="actions-container">
-                        <p>Price: {variant.priceCents}</p>
+                        <p>Price: {convertToDollars(variant.priceCents)}</p>
                         <Button variant="contained" onClick={() => onSubmit(id)}>Add To Cart</Button>
                       </div>
                     </div>
