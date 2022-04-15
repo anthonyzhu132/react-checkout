@@ -1,15 +1,18 @@
 import { useContext } from 'react';
 import { CartContext } from './cart-context';
+import { connect } from "react-redux";
+import { useQuery } from 'react-query'
+import { ToastContainer} from 'react-toastify';
+import { addProducts } from "./redux/cart/cartActions"
+
 import Cart from './components/cart/cart';
 import ProductCard from './components/product-card/product-card';
 import Navigation from './components/navigation/navigation';
+
+import { getProducts } from './api';
+
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-
-import { connect } from "react-redux";
-import { addProducts } from "./redux/cart/cartActions"
-import { useQuery } from 'react-query'
-import { getProducts } from './api';
 
 
 /*
@@ -45,6 +48,20 @@ const App = () => {
 
   return (
     <div className="App">
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar
+        newestOnTop={false}
+        theme="colored"
+        closeOnClick
+        limit={2}
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        icon={false}
+      />
+
       <Navigation />
 
       {isOpen ? <Cart /> : null}
