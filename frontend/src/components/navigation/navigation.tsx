@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { CartContext } from "../../cart-context";
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./navigation.styles.css";
 
 const Navigation = () => {
@@ -11,9 +11,7 @@ const Navigation = () => {
 
   return (
     <nav className="navigation-bar">
-      <div className="cart-icon" onClick={toggleCart}>
-        Cart
-      </div>
+      <ShoppingCartIcon className="cart-icon" onClick={toggleCart} />
     </nav>
   );
 };
