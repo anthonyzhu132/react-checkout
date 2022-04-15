@@ -69,16 +69,18 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
         >
           {open ? 
               variants.map((variant) => {
-                return (
-                  <div key={variant.id} className="selection-container">
-                    <img src={variant.image} alt="Product"/>
-                    <div className="actions-container">
-                      <p>Price: {variant.priceCents}</p>
-                      <Button variant="contained" onClick={() => onSubmit(id)}>Add To Cart</Button>
+                if (variant.isDiscontinued === false && variant.quantity > 0) {
+                  return (
+                    <div key={variant.id} className="selection-container">
+                      <img src={variant.image} alt="Product"/>
+                      <div className="actions-container">
+                        <p>Price: {variant.priceCents}</p>
+                        <Button variant="contained" onClick={() => onSubmit(id)}>Add To Cart</Button>
+                      </div>
                     </div>
-                  </div>
-                )
-              }) 
+                  )
+                }
+              })
             : 
               ""
           }
