@@ -1,12 +1,30 @@
 import { useContext } from 'react';
-
 import { CartContext } from './cart-context';
-
 import Cart from './components/cart/cart';
 import ProductCard from './components/product-card/product-card';
 import Navigation from './components/navigation/navigation';
-
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+
+/*
+ *** NOTES ***
+
+ TODO: Use react query to manage data
+
+ TODO: Replaced temporary data with data fetched from /products api
+
+ TODO: Add Redux to track cart items ASAP
+ *** USER STORIES ***
+
+ TODO: AS A USER I CAN SELECT OPTIONS PROVIDED BY A DROPDOWN
+      // WHERE PRODUCT IS NOT DISCONTINUED || QUANTITY > 0 || PARENT PRODUCT IS NOT DISCONTINUED
+ TODO: AS A USER I CAN SEE A LABEL "OUT OF STOCK"
+      // WHERE VARIANTS ARE INVALID || PRODUCT IS DISCONTINUED
+ TODO: AS A USER I CAN ADD VALID VARIANTS TO THE CART
+ TODO: AS A USER I CAN CHANGE THE QUANTITY OF VARIANTS IN THE CART
+ TODO: AS A USER I CAN REMOVE ITEMS FROM THE CART
+*/
+
 
 // REPLACE WITH API FETCHED ITEMS
 const TEMPORARY_ITEMS = [
