@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 import { connect } from "react-redux";
 import "./product-card.styles.css";
 import { addToCart } from "../../redux/cart/cartActions"
@@ -26,6 +26,9 @@ interface IProductCardProps {
 
 const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElement => {
   const { name, defaultImage, description, isDiscontinued, variants, id } = product;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const isValid = () => {
     // Checking if item isn't valid
@@ -46,6 +49,22 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
       <div className="product-card-details">
         <span className="product-name">{name} </span>
         <span className="product-description"> {description} </span>
+      </div>
+
+      <div>
+        <Dialog
+          open={open}
+          className="variants-dialog"
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          fullWidth
+        >
+          
+        </Dialog>
+      </div>
+      <div className="action-container">
+        <Button disabled={isValid()} variant="contained" onClick={handleOpen}>VIEW ITEM</Button>
       </div>
     </div>
   );
