@@ -57,4 +57,10 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = (dispatch: (arg0: any) => any) => {
+  return {
+    addProducts: (productsArray: any) => dispatch(addProducts(productsArray))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
