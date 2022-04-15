@@ -35,9 +35,11 @@ import './App.css';
 */
 
 const App = () => {
+  //Queries for data using API call getProducts()
   const { data } = useQuery(
     ['products'], () => getProducts(), {
       onSuccess: (data) => {
+        //OnSuccess, use cart action to set product store state with fetched products
         const productsArray = data?.products;
         addProducts(productsArray)
       }
