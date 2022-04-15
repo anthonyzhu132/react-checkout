@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import "./product-card.styles.css";
 import { addToCart } from "../../redux/cart/cartActions"
 
-import { Chip, Button, Dialog, MenuItem } from '@mui/material';
+import { Chip, Button, Dialog } from '@mui/material';
+
+import { toast } from "react-toastify";
 
 export interface IOptions {
   type: string;
@@ -42,6 +44,11 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
     return true;
   }
 
+  const onSubmit = (id:string) => {
+    addToCart(id);
+    toast('Item Added To Cart ✅');
+  };
+
   return (
     <div className="product-card-container">
       <Chip className={`${!isValid() ? 'hidden' : ""}`} color="error" label="Out Of Stock"/>
@@ -60,7 +67,21 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
           aria-describedby="modal-modal-description"
           fullWidth
         >
-          
+          {open ? 
+              variants.map((variant) => {
+                return (
+                  <div key={variant.id} className="selection-container">
+                    <img src={variant.image} alt="Product"/>
+                    <div className="actions-container">
+                      <p>Price: {variant.priceCents}</p>
+                      <Button variant="contained" onClick={() => onSubmit(id)}>Add To Cart</Button>
+                    </div>
+                  </div>
+                )
+              }) 
+            : 
+              ""
+          }
         </Dialog>
       </div>
       <div className="action-container">
