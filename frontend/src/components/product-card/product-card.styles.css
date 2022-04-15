@@ -28,6 +28,27 @@
   max-width: 200px;
 }
 
+.MuiPaper-root {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
+}
+
+.actions-container .MuiButton-root {
+  margin-top: 5px;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-container {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .product-card-container img {
   width: auto;
   height: auto;
