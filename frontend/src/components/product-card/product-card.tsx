@@ -5,12 +5,18 @@ import { addToCart } from "../../redux/cart/cartActions"
 
 import { Chip, Button, Dialog, MenuItem } from '@mui/material';
 
+export interface IOptions {
+  type: string;
+  value: string;
+}
+
 export interface IProduct {
   name: string;
   description: string;
   defaultImage: string;
   id: string;
   isDiscontinued: boolean;
+  variants: [{ quantity: number, isDiscontinued: boolean, selectableOptions: IOptions[], priceCents: number, id: string, image: string }],
 }
 
 interface IProductCardProps {
@@ -19,10 +25,23 @@ interface IProductCardProps {
 }
 
 const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElement => {
-  const { name, defaultImage, description } = product;
+  const { name, defaultImage, description, isDiscontinued, variants, id } = product;
+
+  const isValid = () => {
+    // Checking if item isn't valid
+    if(!isDiscontinued) {
+      // Checking if any variant isn't discontinued and is greater than 0
+      const variantsValid = variants.some(variant => {
+        return variant.isDiscontinued === false && variant.quantity > 0
+      });
+      return !variantsValid;
+    }
+    return true;
+  }
 
   return (
     <div className="product-card-container">
+      <Chip className={`${!isValid() ? 'hidden' : ""}`} color="error" label="Out Of Stock"/>
       <img src={defaultImage} alt="Product" />
       <div className="product-card-details">
         <span className="product-name">{name} </span>
