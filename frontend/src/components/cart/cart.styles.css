@@ -33,3 +33,9 @@
 .cart-modal .total-container {
   margin-top: auto;
 }
+
+
+.total-container {
+  padding-top: 10px;
+  font-weight: bold;
+}
