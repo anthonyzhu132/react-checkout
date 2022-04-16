@@ -65,6 +65,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CHANGE_QUANTITY:
       return {
         ...state,
+        //maps through cart items, and matches with variant ID, if matched will spread item info but modify state with quantity payload.
         cart: state.cart.map((item) => item.variantId === action.payload.id ? {
           ...item,
           quantity: action.payload.quantity
