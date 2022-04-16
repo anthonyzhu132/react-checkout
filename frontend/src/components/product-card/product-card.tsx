@@ -50,8 +50,8 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
     return true;
   }
 
-  const onSubmit = (id:string) => {
-    addToCart(id);
+  const onSubmit = (id:string, variantId:string, typeIndex:number) => {
+    addToCart(id, variantId, typeIndex);
     toast('Item Added To Cart ✅');
   };
 
@@ -98,7 +98,7 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
                             <MenuItem key={Math.random()} value={index}> {option.type} : {option.value}</MenuItem>
                           ))}
                         </Select>
-                        <Button variant="contained" onClick={() => onSubmit(id)}>Add To Cart</Button>
+                        <Button variant="contained" onClick={() => onSubmit(id, variant.id, typeIndex)}>Add To Cart</Button>
                       </div>
                     </div>
                   )
@@ -118,7 +118,7 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
 
 const mapDispatchToProps = (dispatch: (arg0: any) => any) => {
   return {
-    addToCart: (id:string) => dispatch(addToCart(id))
+    addToCart: (id:string, variantId:string, typeIndex:number) => dispatch(addToCart(id, variantId, typeIndex))
   }
 }
 

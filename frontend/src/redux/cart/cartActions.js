@@ -9,11 +9,13 @@ export const removeFromCart = (id) => {
   };  
 };
 
-export const addToCart = (id) => {
+export const addToCart = (id, variantId, typeIndex) => {
   return {
     type: ADD_TO_CART,
     payload: {
-      id
+      id: id,
+      variantId,
+      typeIndex
     },
   };
 };
