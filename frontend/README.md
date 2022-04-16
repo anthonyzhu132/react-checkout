@@ -47,3 +47,11 @@ UI should have the following features:
    - You should be able to add to cart _valid_ variants
    - You should be able to change the quantity in the cart.
    - You should be able to remove items from cart.
+
+## Utiziling App
+![Entire App](https://github.com/anthonyzhu132/react-checkout/blob/366c33fa0ffa64c1f9b3bd78423b8bffb3830d1c/frontend/docs/entire-app-screenshot.png)
+![Cart Screenshot](https://github.com/anthonyzhu132/react-checkout/blob/366c33fa0ffa64c1f9b3bd78423b8bffb3830d1c/frontend/docs/cart-screenshot.png)
+![Dialog Screenshot](https://github.com/anthonyzhu132/react-checkout/blob/366c33fa0ffa64c1f9b3bd78423b8bffb3830d1c/frontend/docs/dialog-screenshot.png)
+![State Screenshot](https://github.com/anthonyzhu132/react-checkout/blob/366c33fa0ffa64c1f9b3bd78423b8bffb3830d1c/frontend/docs/entire-app-screenshot.png)
+![State Screenshot](https://github.com/anthonyzhu132/react-checkout/blob/366c33fa0ffa64c1f9b3bd78423b8bffb3830d1c/frontend/docs/redux-state-screenshot.png)
+![App Gif](https://github.com/anthonyzhu132/react-checkout/blob/366c33fa0ffa64c1f9b3bd78423b8bffb3830d1c/frontend/docs/app.gif)
