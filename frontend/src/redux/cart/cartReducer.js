@@ -14,7 +14,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
   switch(action.type) {
     case ADD_PRODUCTS:
       return {
-        ...state
+        ...state,
+        products: action.payload.products
       }
     case ADD_TO_CART:
       return {
