@@ -2,8 +2,8 @@ import { FC, ReactElement, useState } from "react";
 import { connect } from "react-redux";
 import "./product-card.styles.css";
 import { addToCart } from "../../redux/cart/cartActions"
-
-import { Chip, Button, Dialog } from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Chip, Button, Dialog, MenuItem } from '@mui/material';
 
 import { toast } from "react-toastify";
 
@@ -29,8 +29,14 @@ interface IProductCardProps {
 const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElement => {
   const { name, defaultImage, description, isDiscontinued, variants, id } = product;
   const [open, setOpen] = useState(false);
+  const [typeIndex, setTypeIndex] = useState(-1);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setTypeIndex(+event.target.value);
+  };
 
   const isValid = () => {
     // Checking if item isn't valid
@@ -78,8 +84,20 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
                   return (
                     <div key={variant.id} className="selection-container">
                       <img src={variant.image} alt="Product"/>
+
                       <div className="actions-container">
                         <p>Price: {convertToDollars(variant.priceCents)}</p>
+                        <Select
+                          labelId="variant-select-label-id"
+                          id="variant-select-id"
+                          defaultValue=""
+                          label="type"
+                          onChange={handleChange}
+                        >
+                          {variant.selectableOptions.map((option, index) => (
+                            <MenuItem key={Math.random()} value={index}> {option.type} : {option.value}</MenuItem>
+                          ))}
+                        </Select>
                         <Button variant="contained" onClick={() => onSubmit(id)}>Add To Cart</Button>
                       </div>
                     </div>
