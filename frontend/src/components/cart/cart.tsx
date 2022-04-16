@@ -17,9 +17,13 @@ const Cart: FC<ICartProps> = ({ cart }) => {
   const { setIsOpen } = useContext(CartContext);
   const closeCart = () => setIsOpen(false);
 
+  const toDollars = (num: number) => {
+    return num / 100;
+  }
+
   const totalPrice = () => {
     cart.map((item: any) => {
-      total += item.priceCents * item.quantity
+      return total += toDollars(item.priceCents) * item.quantity
     })
     return total.toFixed(2);
   }
@@ -29,8 +33,8 @@ const Cart: FC<ICartProps> = ({ cart }) => {
       <div className="cart-container">
         <ArrowForwardIcon className="close-button" onClick={closeCart} />
         <div className="cart-items-container">
-          {cart.map((item) => (
-            <CartItem cartItem={item} />
+          {cart.map((item: any) => (
+            <CartItem cartItem={item} key={item.id}/>
           ))}
         </div>
         <div className="total-container">
