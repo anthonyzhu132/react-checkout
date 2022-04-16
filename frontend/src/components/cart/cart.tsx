@@ -1,7 +1,10 @@
-import { useContext } from 'react';
+import { useContext, FC } from 'react';
 
 import CartItem from '../cart-item/cart-item';
 import { CartContext } from '../../cart-context';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+import { connect } from "react-redux";
 
 import './cart.styles.css';
 
