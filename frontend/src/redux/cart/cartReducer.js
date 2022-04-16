@@ -58,7 +58,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       }
     case REMOVE_FROM_CART:
       return {
-        ...state
+        ...state,
+        //Filtering through entire cart state, if the variant ID does not match payload variant ID, keep inside the cart
+        cart: state.cart.filter((item) => item.variantId !== action.payload.variantId)
       }
     case CHANGE_QUANTITY:
       return {
