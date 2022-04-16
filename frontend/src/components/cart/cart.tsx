@@ -13,9 +13,16 @@ interface ICartProps {
 }
 
 const Cart: FC<ICartProps> = ({ cart }) => {
+  let total = 0;
   const { setIsOpen } = useContext(CartContext);
-
   const closeCart = () => setIsOpen(false);
+
+  const totalPrice = () => {
+    cart.map((item: any) => {
+      total += item.priceCents * item.quantity
+    })
+    return total.toFixed(2);
+  }
 
   return (
     <div className="cart-modal">
@@ -27,7 +34,7 @@ const Cart: FC<ICartProps> = ({ cart }) => {
           ))}
         </div>
         <div className="total-container">
-          {/* <span>Total: ${totalPrice()}</span> */}
+          <span>Total: ${totalPrice()}</span>
         </div>
       </div>
     </div>
