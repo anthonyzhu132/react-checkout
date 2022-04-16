@@ -64,7 +64,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       }
     case CHANGE_QUANTITY:
       return {
-        ...state
+        ...state,
+        cart: state.cart.map((item) => item.variantId === action.payload.id ? {
+          ...item,
+          quantity: action.payload.quantity
+        } : item)
       }
     default:
       return state;
