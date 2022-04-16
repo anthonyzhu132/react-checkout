@@ -34,10 +34,12 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //Function that tracks the change of selector, and sets index state to track which variant is selected
   const handleChange = (event: SelectChangeEvent) => {
     setTypeIndex(+event.target.value);
   };
 
+  //Function that that checks if the parent is valid, as well as child (variants) are valid.
   const isValid = () => {
     // Checking if item isn't valid
     if(!isDiscontinued) {
@@ -50,11 +52,13 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
     return true;
   }
 
+  //Function that fires action to add to cart, as well as user feedback with toast
   const onSubmit = (id:string, variantId:string, typeIndex:number) => {
     addToCart(id, variantId, typeIndex);
     toast('Item Added To Cart ✅');
   };
 
+  //Function that converts priceCents to dollars, with currency.
   const convertToDollars = (cents:number) => {
     let total = cents /= 100;
     return total.toLocaleString("en-US", {style:"currency", currency:"CAD"});
@@ -78,7 +82,14 @@ const ProductCard: FC<IProductCardProps> = ({ product, addToCart }): ReactElemen
           aria-describedby="modal-modal-description"
           fullWidth
         >
-          {open ? 
+
+          {/* 
+          - Checks if dialog is open, if it is open
+          - If open, will map through all of the variants
+          - If variant is valid, return the variant card, with a select and add to cart button
+          - Maps through all of the selectable options for each variant, and creates a menu item for user to select and submit.
+          */}
+          {open ?
               variants.map((variant) => {
                 if (variant.isDiscontinued === false && variant.quantity > 0) {
                   return (

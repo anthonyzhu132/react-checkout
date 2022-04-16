@@ -17,11 +17,13 @@ const Cart: FC<ICartProps> = ({ cart }) => {
   const { setIsOpen } = useContext(CartContext);
   const closeCart = () => setIsOpen(false);
 
+  //Function takes in a number (priceCents) and divides it by 100 to convert to dollar
   const toDollars = (num: number) => {
     return num / 100;
   }
 
-  const totalPrice = () => {
+  //Function maps through provided cart, and returns total price by multiplying priceCents (converted) with quantity
+  const totalPrice = (cart: []) => {
     cart.map((item: any) => {
       return total += toDollars(item.priceCents) * item.quantity
     })
@@ -38,7 +40,7 @@ const Cart: FC<ICartProps> = ({ cart }) => {
           ))}
         </div>
         <div className="total-container">
-          <span>Total: ${totalPrice()}</span>
+          <span>Total: ${totalPrice(cart)}</span>
         </div>
       </div>
     </div>
