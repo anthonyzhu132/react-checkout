@@ -4,16 +4,18 @@
   flex-direction: column;
   position: absolute;
   right: 0px;
-  height: calc(100vh - 80px);
+  height: fit-content;
   width: 400px;
   padding: 15px;
+  z-index: 9999;
   background-color: white;
   border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .close-button {
-  font-size: 24px;
-  width: 25px;
+  width: 30px;
+  cursor: pointer;
 }
 
 .cart-container {
@@ -30,4 +32,10 @@
 
 .cart-modal .total-container {
   margin-top: auto;
+}
+
+
+.total-container {
+  padding-top: 10px;
+  font-weight: bold;
 }

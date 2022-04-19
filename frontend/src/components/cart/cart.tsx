@@ -1,53 +1,56 @@
-import { useContext } from 'react';
+import { useContext, FC } from 'react';
 
 import CartItem from '../cart-item/cart-item';
 import { CartContext } from '../../cart-context';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+import { connect } from "react-redux";
 
 import './cart.styles.css';
 
-// REPLACE WITH YOUR OWN CART ITEMS & SOLUTION
-const TEMPORARY_ITEMS = [
-  {
-    id: 1,
-    name: 'Hat',
-    imageSrc:
-      'https://media.istockphoto.com/photos/hat-on-white-background-picture-id526131500?b=1&k=20&m=526131500&s=170667a&w=0&h=TVhckgzmxLZ6b1V74eel7XbFy73tldESzBcH0ZG6g0c=',
-    price: 15,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: 'Shirt',
-    imageSrc:
-      'https://media.istockphoto.com/photos/blank-white-tshirt-front-with-clipping-path-picture-id482948743?b=1&k=20&m=482948743&s=170667a&w=0&h=DetzN8rTsgQDTyBDSWvc7gUNz0gae0CUQecM-KNN3WY=',
-    price: 10,
-    quantity: 3,
-  },
-];
+interface ICartProps {
+  cart: [];
+}
 
-const Cart = () => {
+const Cart: FC<ICartProps> = ({ cart }) => {
+  let total = 0;
   const { setIsOpen } = useContext(CartContext);
-
   const closeCart = () => setIsOpen(false);
-  const totalPrice = TEMPORARY_ITEMS.reduce((total, { price }) => total + price, 0).toFixed(2);
+
+  //Function takes in a number (priceCents) and divides it by 100 to convert to dollar
+  const toDollars = (num: number) => {
+    return num / 100;
+  }
+
+  //Function maps through provided cart, and returns total price by multiplying priceCents (converted) with quantity
+  const totalPrice = (cart: []) => {
+    cart.map((item: any) => {
+      return total += toDollars(item.priceCents) * item.quantity
+    })
+    return total.toFixed(2);
+  }
 
   return (
     <div className="cart-modal">
       <div className="cart-container">
-        <button className="close-button" onClick={closeCart}>
-          →
-        </button>
+        <ArrowForwardIcon className="close-button" onClick={closeCart} />
         <div className="cart-items-container">
-          {TEMPORARY_ITEMS.map((item) => (
-            <CartItem key={item.id} cartItem={item} />
+          {cart.map((item: any) => (
+            <CartItem cartItem={item} key={item.id}/>
           ))}
         </div>
         <div className="total-container">
-          <span>Total: ${totalPrice}</span>
+          <span>Total: ${totalPrice(cart)}</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Cart;
+const mapStateToProps = (state: any) => {
+  return {
+    cart: state.cart.cart
+  }
+}
+
+export default connect(mapStateToProps)(Cart);

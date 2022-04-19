@@ -2,12 +2,64 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  margin: 10px;
+  margin: 25px;
   width: 200px;
-  height: 350px;
+  height: 400px;
+  max-height: 500px;
   padding: 15px;
+  text-align: center;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  cursor: pointer;
+}
+
+.product-card-container:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.MuiChip-root {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.MuiPaper-root {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 25px;
+  border: 1px solid gray;
+  margin: 20px;
+}
+
+.selection-container:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-container .MuiButton-root {
+  margin-top: 5px;
+}
+
+.action-container {
+  margin-top: auto ;
 }
 
 .product-card-container img {
@@ -27,4 +79,8 @@
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+.hidden {
+  visibility: hidden;
 }
